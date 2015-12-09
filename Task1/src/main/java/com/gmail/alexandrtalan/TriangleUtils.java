@@ -12,11 +12,11 @@ public class TriangleUtils {
     public boolean isTriangle(int a, int b, int c) throws IllegalArgumentException {
         if (a < 0 || b < 0 || c < 0) {
             throw new IllegalArgumentException("One or more of the parameters < 0.");
-        } else if (a == 0 && b == 0 && c == 0){
+        } else if (a == 0 && b == 0 && c == 0) {
             throw new IllegalArgumentException("All parameters equals 0.");
         }
 
-        return a < (c + b) && b <(a + c) && c < (a + b);
+        return a < (c + b) && b < (a + c) && c < (a + b);
     }
 
     /**
