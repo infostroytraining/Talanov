@@ -10,6 +10,8 @@ public class JCommanderParameters {
 
     @Parameter(names = {"-t", "--task"}, converter = CommandConverter.class)
     private Command task;
+    
+    //where is HELP field? забыл ? :-)
 
     public String getPath() {
         return path;
