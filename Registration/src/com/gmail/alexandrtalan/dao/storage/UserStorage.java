@@ -25,6 +25,10 @@ public class UserStorage {
         return user;
     }
 
+    public void delete(Integer id){
+        storage.remove(id);
+    }
+
     public List<User> all() {
         return new ArrayList<User>(storage.values());
     }
