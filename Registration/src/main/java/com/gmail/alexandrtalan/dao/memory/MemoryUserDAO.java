@@ -5,14 +5,15 @@ import com.gmail.alexandrtalan.dao.UserDAO;
 import com.gmail.alexandrtalan.dao.storage.UserStorage;
 import com.gmail.alexandrtalan.entity.User;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class MemoryUserDAO implements UserDAO{
 
     private UserStorage storage;
 
-    public MemoryUserDAO(UserStorage storage){
-        this.storage = storage;
+    public MemoryUserDAO(Connection storage){
+        this.storage = (UserStorage) storage;
     }
 
     @Override
