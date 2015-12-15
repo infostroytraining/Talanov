@@ -18,7 +18,7 @@ import java.util.Properties;
 @WebListener
 public class ContextListener implements ServletContextListener {
 
-    private static final String PATH_TO_PROPERTY_FILE = "C:\\Users\\alexa\\Desktop\\Talanov\\ServletExample\\src\\main\\resources\\config.properties";
+    private static final String PATH_TO_PROPERTY_FILE = "C:\\Users\\alexa\\Desktop\\Talanov\\Registration\\src\\main\\resources\\config.properties";
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {

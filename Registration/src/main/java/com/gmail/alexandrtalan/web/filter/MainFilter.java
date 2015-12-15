@@ -43,6 +43,7 @@ public class MainFilter implements Filter {
                     req.getRequestDispatcher("home.jsp").forward(req, resp);
                 } else {
                     debugLogger.debug("Validation success");
+                    req.getServletContext().setAttribute("userDTO", userDTO);
                     req.setAttribute("success", "Success!");
                     filterChain.doFilter(req, resp);
                 }
