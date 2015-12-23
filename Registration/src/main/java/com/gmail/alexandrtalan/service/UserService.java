@@ -4,6 +4,8 @@ package com.gmail.alexandrtalan.service;
 import com.gmail.alexandrtalan.dao.UserDAO;
 import com.gmail.alexandrtalan.entity.User;
 
+import java.sql.SQLException;
+
 public class UserService {
 
     private UserDAO userDAO;
@@ -12,7 +14,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public Integer create(User entity){
+    public Integer create(User entity) throws SQLException {
         return userDAO.create(entity).getId();
     }
 }

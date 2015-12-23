@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="p" uri="WEB-INF/custom.tld"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -45,6 +46,15 @@
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
             </div>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="captcha" type="text" name="captcha">
+                <label for="captcha">Captcha <span class="errors">${errors.captcha}</span></label>
+            </div>
+            <p:captcha/>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit" name="action">Send

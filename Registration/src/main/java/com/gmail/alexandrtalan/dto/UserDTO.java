@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class UserDTO implements Serializable{
 
-    private String firstName, lastName, email, password, imagePath;
+    private String firstName, lastName, email, password, imagePath, captcha;
 
     public UserDTO(){}
 
@@ -54,5 +54,13 @@ public class UserDTO implements Serializable{
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public String getCaptcha() {
+        return captcha;
+    }
+
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
     }
 }

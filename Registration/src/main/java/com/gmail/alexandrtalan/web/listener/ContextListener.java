@@ -4,6 +4,7 @@ package com.gmail.alexandrtalan.web.listener;
 import com.gmail.alexandrtalan.dao.DaoFactory;
 import com.gmail.alexandrtalan.dao.UserDAO;
 import com.gmail.alexandrtalan.dao.memory.MemoryDaoFactory;
+import com.gmail.alexandrtalan.dao.postgre.PostgreDaoFactory;
 import com.gmail.alexandrtalan.service.UserService;
 import com.gmail.alexandrtalan.util.PropertyReader;
 
@@ -23,7 +24,7 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            DaoFactory daoFactory = new MemoryDaoFactory();
+            DaoFactory daoFactory = new PostgreDaoFactory();
             Connection connection = daoFactory.getConnection();
             UserDAO userDAO = daoFactory.getUserDAO(connection);
             UserService userService = new UserService(userDAO);

@@ -47,9 +47,4 @@ public class MemoryUserDAO implements UserDAO{
     public void delete(int id) {
         storage.delete(id);
     }
-
-    @Override
-    public List<User> getAll() {
-        return storage.all();
-    }
 }

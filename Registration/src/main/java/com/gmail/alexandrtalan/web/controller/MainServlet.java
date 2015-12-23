@@ -4,7 +4,8 @@ import com.gmail.alexandrtalan.dto.UserDTO;
 import com.gmail.alexandrtalan.entity.User;
 import com.gmail.alexandrtalan.service.UserService;
 import com.gmail.alexandrtalan.util.FileUploader;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Properties;
 
 
 @WebServlet(urlPatterns = {"/index", "/home"})
 public class MainServlet extends HttpServlet {
 
-    private static final Logger infoLogger = Logger.getLogger("infoLogger");
+    private static final Logger logger = LogManager.getLogger(MainServlet.class);
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,11 +34,15 @@ public class MainServlet extends HttpServlet {
         String basicFilePath = properties.getProperty("basicFilePath");
         String[] permissibleTypes = properties.getProperty("permissibleTypes").split(",\\s+");
 
-        UserDTO userDTO = (UserDTO) req.getServletContext().getAttribute("userDTO");
-        String imagePath = FileUploader.upload(req, basicFilePath, permissibleTypes);
-        userDTO.setImagePath(imagePath);
-        int ID = userService.create(new User(userDTO));
-        infoLogger.info("User with ID ==> " + ID + " created.");
+        try {
+            UserDTO userDTO = (UserDTO) req.getServletContext().getAttribute("userDTO");
+            String imagePath = FileUploader.upload(req, basicFilePath, permissibleTypes);
+            userDTO.setImagePath(imagePath);
+            int ID = userService.create(new User(userDTO));
+            logger.info("User with id => {} added.", ID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 }

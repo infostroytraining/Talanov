@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" packages="com.gmail.alexandrtalan.util">
+
+    <Properties>
+        <Property name="pattern">%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n"</Property>
+        <Property name="basedir">C:\Users\alexa\Desktop\Talanov\Registration\logs</Property>
+    </Properties>
+
+    <Appenders>
+        <File name="FILE" fileName="${basedir}\dao-log.txt" append="true">
+            <PatternLayout pattern="${pattern}"/>
+        </File>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
+        <ServerJsonLogsAppender name="serverJsonAppender">
+            <JSONLayout/>
+        </ServerJsonLogsAppender>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.gmail.alexandrtalan.dao.postgre.PostgreDaoFactory" level="info">
+            <AppenderRef ref="FILE"/>
+        </Logger>
+        <Logger name="com.gmail.alexandrtalan.dao.postgre.PostgreUserDAO" level="info">
+            <AppenderRef ref="FILE"/>
+        </Logger>
+        <Logger name="com.gmail.alexandrtalan.service.UserService" level="info">
+            <AppenderRef ref="FILE"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="serverJsonAppender"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
