@@ -76,4 +76,17 @@ public class PostgreUserDAO implements UserDAO {
         statement.setInt(1, id);
         statement.execute();
     }
+
+    @Override
+    public boolean isEmailDuplicate(User entity) throws SQLException {
+        final String query = "SELECT COUNT(id) FROM public.user WHERE email = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, entity.getEmail());
+        ResultSet resultSet = statement.executeQuery();
+        int count = -1;
+        while (resultSet.next()) {
+            count = resultSet.getInt(1);
+        }
+        return (count == 0);
+    }
 }

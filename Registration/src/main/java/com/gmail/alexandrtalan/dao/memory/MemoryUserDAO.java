@@ -6,6 +6,7 @@ import com.gmail.alexandrtalan.dao.storage.UserStorage;
 import com.gmail.alexandrtalan.entity.User;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public class MemoryUserDAO implements UserDAO{
@@ -46,5 +47,10 @@ public class MemoryUserDAO implements UserDAO{
     @Override
     public void delete(int id) {
         storage.delete(id);
+    }
+
+    @Override
+    public boolean isEmailDuplicate(User entity) throws SQLException {
+        return false;
     }
 }

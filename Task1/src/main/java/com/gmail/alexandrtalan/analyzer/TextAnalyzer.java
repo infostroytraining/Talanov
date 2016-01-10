@@ -14,6 +14,9 @@ import java.util.List;
 public class TextAnalyzer {
 
     public static void main(String[] args) throws IOException {
+
+        args = new String[]{""};
+
         JCommanderParameters jCommanderParameters = new JCommanderParameters();
         new JCommander(jCommanderParameters, args);
         Command commandTask = jCommanderParameters.getTask();

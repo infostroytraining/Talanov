@@ -18,6 +18,7 @@ import org.apache.logging.log4j.core.config.plugins.PluginElement;
 import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-@Plugin(name="ServerJsonLogsAppender", category="Core", elementType="appender", printObject=true)
+@Plugin(name = "ServerJsonLogsAppender", category = "Core", elementType = "appender", printObject = true)
 public class ServerJsonLogsAppender extends AbstractAppender {
 
     private static final String SERVER_URL = "http://localhost:8888/server-log-app/logs";
@@ -57,13 +58,7 @@ public class ServerJsonLogsAppender extends AbstractAppender {
         readLock.lock();
         try {
             final byte[] bytes = getLayout().toByteArray(logEvent);
-            HttpClient httpclient = HttpClientBuilder.create().build();
-            HttpPost httpost = new HttpPost(SERVER_URL);
-            List<NameValuePair> nvps = new ArrayList<>();
-            nvps.add(new BasicNameValuePair("logEvent", new String(bytes, "UTF-8")));
-            httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
-            httpclient.execute(httpost);
-
+            sendPost(new String(bytes, "UTF-8"));
         } catch (Exception ex) {
             if (!ignoreExceptions()) {
                 throw new AppenderLoggingException(ex);
@@ -71,5 +66,14 @@ public class ServerJsonLogsAppender extends AbstractAppender {
         } finally {
             readLock.unlock();
         }
+    }
+
+    private void sendPost(String input) throws IOException {
+        HttpClient httpclient = HttpClientBuilder.create().build();
+        HttpPost httpPost = new HttpPost(SERVER_URL);
+        List<NameValuePair> nameValuePairs = new ArrayList<>();
+        nameValuePairs.add(new BasicNameValuePair("logEvent", input));
+        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, HTTP.UTF_8));
+        httpclient.execute(httpPost);
     }
 }

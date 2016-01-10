@@ -17,4 +17,8 @@ public class UserService {
     public Integer create(User entity) throws SQLException {
         return userDAO.create(entity).getId();
     }
+
+    public boolean isEmailDuplicate(User entity) throws SQLException {
+        return userDAO.isEmailDuplicate(entity);
+    }
 }

@@ -1,1 +1,199 @@
 
+{
+  "timeMillis" : 1451142075148,
+  "thread" : "http-apr-8080-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.controller.MainServlet",
+  "message" : "User with id => 49 added.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451142844022,
+  "thread" : "RMI TCP Connection(6)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451142893696,
+  "thread" : "RMI TCP Connection(10)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451142951896,
+  "thread" : "RMI TCP Connection(13)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451143005547,
+  "thread" : "RMI TCP Connection(16)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451143359260,
+  "thread" : "RMI TCP Connection(19)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451143567529,
+  "thread" : "RMI TCP Connection(22)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451143613488,
+  "thread" : "RMI TCP Connection(26)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451144123753,
+  "thread" : "RMI TCP Connection(29)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451144289098,
+  "thread" : "RMI TCP Connection(33)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451144461234,
+  "thread" : "RMI TCP Connection(36)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451144641702,
+  "thread" : "RMI TCP Connection(39)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451144717416,
+  "thread" : "RMI TCP Connection(42)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451144889278,
+  "thread" : "RMI TCP Connection(45)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451144931017,
+  "thread" : "RMI TCP Connection(48)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451145004382,
+  "thread" : "RMI TCP Connection(51)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451145105347,
+  "thread" : "RMI TCP Connection(54)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451145244395,
+  "thread" : "RMI TCP Connection(58)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451145305852,
+  "thread" : "RMI TCP Connection(61)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451145584045,
+  "thread" : "RMI TCP Connection(64)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451145611331,
+  "thread" : "RMI TCP Connection(66)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}
+{
+  "timeMillis" : 1451145731087,
+  "thread" : "RMI TCP Connection(69)-127.0.0.1",
+  "level" : "INFO",
+  "loggerName" : "com.gmail.alexandrtalan.web.filter.MainFilter",
+  "message" : "Filter init.",
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.log4j.spi.AbstractLogger"
+}

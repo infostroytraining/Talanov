@@ -1,27 +1,22 @@
 package com.gmail.alexandrtalan.web.filter;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gmail.alexandrtalan.dto.UserDTO;
 import nl.captcha.Captcha;
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@WebFilter(urlPatterns = {"/index", "/home"})
+@WebFilter(urlPatterns = {"/index", "/registration"})
 public class MainFilter implements Filter {
 
     private static final Logger logger = LogManager.getLogger(MainFilter.class);
@@ -33,64 +28,27 @@ public class MainFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("Do filter.");
-        try {
-            HttpServletRequest request = (HttpServletRequest) req;
-            if ("POST".equals(request.getMethod())) {
-                UserDTO userDTO = readAllFields(request);
-                Captcha captcha = (Captcha) request.getSession().getAttribute("captcha");
-                Map<String, String> errors = validate(userDTO, captcha);
-                if (!errors.isEmpty()) {
-                    //debugLogger.debug("Validation failed");
-                    req.setAttribute("errors", errors);
-                    req.getServletContext().setAttribute("userDTO", userDTO);
-                    req.getRequestDispatcher("home.jsp").forward(req, resp);
-                } else {
-                    //debugLogger.debug("Validation success");
-                    req.getServletContext().setAttribute("userDTO", userDTO);
-                    req.setAttribute("success", "Success!");
-                    filterChain.doFilter(req, resp);
-                }
+        HttpServletRequest request = (HttpServletRequest) req;
 
+        if ("POST".equals(request.getMethod())) {
+            ObjectMapper mapper = new ObjectMapper();
+            String json = request.getParameter("json");
+            UserDTO userDTO = mapper.readValue(json, UserDTO.class);
+
+            Captcha captcha = (Captcha) request.getSession().getAttribute("captcha");
+            Map<String, String> errors = validate(userDTO, captcha);
+            if (!errors.isEmpty()) {
+                //debugLogger.debug("Validation failed");
+                errors.put("status", "Error");
+                resp.getWriter().write(mapper.writeValueAsString(errors));
             } else {
-                req.getRequestDispatcher("home.jsp").forward(req, resp);
+                //debugLogger.debug("Validation success");
+                req.getServletContext().setAttribute("userDTO", userDTO);
+                filterChain.doFilter(req, resp);
             }
-
-        } catch (FileUploadException e) {
+        } else {
+            req.getRequestDispatcher("home.jsp").forward(req, resp);
         }
-    }
-
-
-    private UserDTO readAllFields(HttpServletRequest request) throws IOException, FileUploadException {
-        UserDTO userDTO = new UserDTO();
-        ServletFileUpload upload = new ServletFileUpload();
-        FileItemIterator iterator = upload.getItemIterator(request);
-        while (iterator.hasNext()) {
-            FileItemStream field = iterator.next();
-
-            if (field.isFormField()) {
-                String fieldValue = new BufferedReader(new InputStreamReader(field.openStream())).readLine();
-                switch (field.getFieldName()) {
-                    case "firstName":
-                        userDTO.setFirstName(fieldValue);
-                        break;
-                    case "lastName":
-                        userDTO.setLastName(fieldValue);
-                        break;
-                    case "email":
-                        userDTO.setEmail(fieldValue);
-                        break;
-                    case "password":
-                        userDTO.setPassword(fieldValue);
-                        break;
-                    case "captcha":
-                        userDTO.setCaptcha(fieldValue);
-                        break;
-                }
-            }
-        }
-
-        return userDTO;
     }
 
     private Map<String, String> validate(UserDTO userDTO, Captcha captcha) {
@@ -118,7 +76,7 @@ public class MainFilter implements Filter {
         if (email != null && !email.isEmpty()) {
             Matcher checkEmail = Pattern.compile(".+@.+\\..+").matcher(email);
             if (!checkEmail.find()) {
-               // debugLogger.debug("E-mail is not correct.");
+                // debugLogger.debug("E-mail is not correct.");
                 errors.put("email", "E-mail is not correct.");
             }
         } else {
@@ -129,13 +87,14 @@ public class MainFilter implements Filter {
         if (password != null && !password.isEmpty()) {
             Matcher checkPassword = Pattern.compile("^[a-zA-Z0-9]{6,18}$").matcher(password);
             if (!checkPassword.find()) {
-              //  debugLogger.debug("Password must contain letters [a-Z], numbers [0-9] and have a length [6 - 18].");
+                //  debugLogger.debug("Password must contain letters [a-Z], numbers [0-9] and have a length [6 - 18].");
                 errors.put("password", "Password must contain letters [a-Z], numbers [0-9] and have a length [6 - 18].");
             }
         } else {
-           // debugLogger.debug("Field password must be entered.");
+            // debugLogger.debug("Field password must be entered.");
             errors.put("password", "Field password must be entered.");
         }
+
 
         return errors;
     }

@@ -11,6 +11,6 @@ public class CaptchaTag extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
 
         JspWriter out = getJspContext().getOut();
-        out.println("<img src='/captcha' />");
+        out.println("<img id='captchaImg' class='responsive-img z-depth-3' src='/captcha' />");
     }
 }

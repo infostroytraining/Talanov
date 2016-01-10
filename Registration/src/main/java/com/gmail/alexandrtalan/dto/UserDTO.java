@@ -63,4 +63,16 @@ public class UserDTO implements Serializable{
     public void setCaptcha(String captcha) {
         this.captcha = captcha;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", captcha='" + captcha + '\'' +
+                '}';
+    }
 }
