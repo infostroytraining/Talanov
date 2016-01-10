@@ -21,6 +21,7 @@ $('#register').on('click', function () {
             "use strict";
             if (err === undefined) {
                 if (result.status === "Ok") {
+                    Materialize.toast('Success!', 3000);
                     UploadFile.upload(formData, (err, result)=> {
                         if (err === undefined) {
                             $(".progress").css("display", "none");
@@ -30,70 +31,46 @@ $('#register').on('click', function () {
                     });
                 } else {
                     $(".progress").css("display", "none");
-                    alert(result.message);
+                    Materialize.toast(result.message, 3000);
                 }
             }
         });
     }
 });
 
-var abc = false;
 function validate(data) {
-    var status =  true;
-    abc = true;
-    var firstName = data.firstName;
-    var lastName = data.lastName;
-    var email = data.email;
-    var password = data.password;
-    var captcha = data.captcha;
-
-    if (firstName.search(/^[a-zA-Zа-яА-Я]{3,20}$/) === -1) {
-        $('#fist_name_error').html(`<a>First Name</a><span class="valid-error"> Help me!</span>`);
+    let status = true;
+    if(data.firstName.length === 0){
+        Materialize.toast('Field "First name" must be entered!', 3000);
         status = false;
     }
-    if (lastName.search(/^[a-zA-Zа-яА-Я]{3,20}$/) === -1) {
-        $('#last_name_error').html(`<a>Last Name</a><span class="valid-error"> Help me!</span>`);
+    if(data.lastName.length === 0){
+        Materialize.toast('Field "Last name" must be entered!', 3000);
         status = false;
     }
-    if(email.search(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/) === -1){
-        $('#email_error').html(`<a>Email</a><span class="valid-error"> Help me!</span>`);
+    if(data.email.length !== 0) {
+        if (!validator.isEmail(data.email)) {
+            Materialize.toast('Field "email" have incorrect format !', 3000);
+            status = false;
+        }
+    } else {
+        Materialize.toast('Field "Email" must be entered!', 3000);
         status = false;
     }
-    if(password.search(/^[a-zA-Z0-9]{6,18}$/) === -1){
-        $('#password_error').html(`<a>Password</a><span class="valid-error"> Help me!</span>`);
+    if (!validator.matches(data.password, '^[A-Za-z0-9]{6,18}$')) {
+        Materialize.toast('Field "password" have incorrect format !', 3000);
         status = false;
     }
-    if(captcha.length === 0){
-        $('#captcha_error').html(`<a>Captcha</a><span class="valid-error"> Empty!</span>`);
+    if(data.password !== $('#passRepeat').val()){
+        Materialize.toast('Fields "password" and password repeat do not coincide!', 3000);
+        status = false;
+    }
+    if(data.captcha.length === 0) {
+        Materialize.toast('Field "Captcha" must be entered!', 3000);
         status = false;
     }
 
     return status;
 }
 
-$('.validate').on("keydown", function(){
-    if(abc) {
-        var firstName = $('#first_name').val();
-        var lastName = $('#last_name').val();
-        var email = $('#email').val();
-        var password = $('#password').val();
-        var captcha = $('#captcha').val();
-
-        if (firstName.search(/^[a-zA-Zа-яА-Я]{3,20}$/) !== -1) {
-            $('#fist_name_error').html(`<a>First Name</a><span class="valid-success"> Success!</span>`);
-        }
-        if (lastName.search(/^[a-zA-Zа-яА-Я]{3,20}$/) !== -1) {
-            $('#last_name_error').html(`<a>Last Name</a><span class="valid-success"> Success!</span>`);
-        }
-        if (email.search(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/) !== -1) {
-            $('#email_error').html(`<a>Email</a><span class="valid-success"> Success!</span>`);
-        }
-        if (password.search(/^[a-zA-Z0-9]{6,18}$/) !== -1) {
-            $('#password_error').html(`<a>Password</a><span class="valid-success"> Success!</span>`);
-        }
-        if (captcha.length !== 0) {
-            $('#captcha_error').html(`<a>Captcha</a><span class="valid-success"> Success!</span>`);
-        }
-    }
-});
 

@@ -16,23 +16,28 @@
         <div class="row blue-grey darken-1 oops">
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="first_name" type="text" value="balla" class="validate">
+                <input id="first_name" type="text" class="validate">
                 <label for="first_name" id="fist_name_error"><a>First Name</a></label>
             </div>
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">perm_identity</i>
-                <input id="last_name" type="text" value="jfkdhjfk" class="validate">
+                <input id="last_name" type="text" class="validate">
                 <label for="last_name" id="last_name_error"><a>Last Name</a></label>
             </div>
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">email</i>
-                <input id="email" type="email" value="you-mail@gmail.com" class="validate">
+                <input id="email" type="email" class="validate">
                 <label for="email" id="email_error"><a>Email</a></label>
             </div>
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">https</i>
-                <input id="password" type="password" value="0999236364zDTicwCC" class="validate">
-                <label for="first_name" id="password_error"><a>Password</a></label>
+                <input id="password" type="password" class="validate">
+                <label for="password" id="password_error"><a>Password</a></label>
+            </div>
+            <div class="input-field col m6 s12">
+                <i class="material-icons prefix">https</i>
+                <input id="passRepeat" type="password" class="validate">
+                <label for="passRepeat" id="passRepeat_error"><a>Password repeat</a></label>
             </div>
             <div class="col m12 s12">
                 <form action="#" enctype="multipart/form-data">
@@ -83,6 +88,7 @@
 
 
 <script src="<c:url value="public/javascript/lib/jquery-1.11.3.min.js" />"></script>
+<script src="<c:url value="public/javascript/lib/validator.min.js" />"></script>
 <script src="<c:url value="public/javascript/lib/materialize.min.js" />"></script>
 <script src="<c:url value="public/javascript/service/registration.js" />"></script>
 <script src="<c:url value="public/javascript/service/uploadFile.js" />"></script>
