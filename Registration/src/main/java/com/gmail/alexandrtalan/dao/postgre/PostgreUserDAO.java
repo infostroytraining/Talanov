@@ -16,7 +16,7 @@ public class PostgreUserDAO implements UserDAO {
 
     @Override
     public User create(User entity) throws SQLException {
-        final String query = "INSERT INTO public.user(email, first_name, last_name, password, image_path) VALUES (?,?,?,?,?)";
+        final String query = "INSERT INTO public.users(email, first_name, last_name, password, image_path) VALUES (?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, entity.getEmail());
         statement.setString(2, entity.getFirstName());
@@ -38,7 +38,7 @@ public class PostgreUserDAO implements UserDAO {
 
     @Override
     public User read(int id) throws SQLException {
-        final String query = "SELECT * FROM public.user AS u WHERE u.id = ?";
+        final String query = "SELECT * FROM public.users AS u WHERE u.id = ?";
         User user = new User();
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, id);
@@ -57,7 +57,7 @@ public class PostgreUserDAO implements UserDAO {
 
     @Override
     public void update(User entity) throws SQLException {
-        final String query = "UPDATE public.user AS u " +
+        final String query = "UPDATE public.users AS u " +
                 "SET u.email = ?, u.first_name = ?, u.last_name = ?, u.password = ?, u.image_path = ?" +
                 "WHERE u.id = ?";
         PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -71,7 +71,7 @@ public class PostgreUserDAO implements UserDAO {
 
     @Override
     public void delete(int id) throws SQLException {
-        final String query = "DELETE FROM public.user AS u WHERE u.id = ?";
+        final String query = "DELETE FROM public.users AS u WHERE u.id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, id);
         statement.execute();
@@ -79,7 +79,7 @@ public class PostgreUserDAO implements UserDAO {
 
     @Override
     public boolean isEmailDuplicate(User entity) throws SQLException {
-        final String query = "SELECT COUNT(id) FROM public.user WHERE email = ?";
+        final String query = "SELECT COUNT(id) FROM public.users WHERE email = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, entity.getEmail());
         ResultSet resultSet = statement.executeQuery();
@@ -87,6 +87,6 @@ public class PostgreUserDAO implements UserDAO {
         while (resultSet.next()) {
             count = resultSet.getInt(1);
         }
-        return (count == 0);
+        return (count != 0);
     }
 }

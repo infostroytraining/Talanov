@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.gmail.alexandrtalan.entity.User" table="users">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="sequence" />
+        </id>
+        <property name="firstName" type="java.lang.String">
+            <column name="first_name" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="last_name" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" />
+        </property>
+        <property name="imagePath" type="java.lang.String">
+            <column name="image_path" />
+        </property>
+    </class>
+</hibernate-mapping>

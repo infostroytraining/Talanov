@@ -3,8 +3,7 @@ package com.gmail.alexandrtalan.web.listener;
 
 import com.gmail.alexandrtalan.dao.DaoFactory;
 import com.gmail.alexandrtalan.dao.UserDAO;
-import com.gmail.alexandrtalan.dao.memory.MemoryDaoFactory;
-import com.gmail.alexandrtalan.dao.postgre.PostgreDaoFactory;
+import com.gmail.alexandrtalan.dao.hibernate.HibernateDaoFactory;
 import com.gmail.alexandrtalan.service.UserService;
 import com.gmail.alexandrtalan.util.PropertyReader;
 
@@ -13,7 +12,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Properties;
 
 @WebListener
@@ -23,15 +21,11 @@ public class ContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        try {
-            DaoFactory daoFactory = new PostgreDaoFactory();
-            Connection connection = daoFactory.getConnection();
-            UserDAO userDAO = daoFactory.getUserDAO(connection);
-            UserService userService = new UserService(userDAO);
-            servletContextEvent.getServletContext().setAttribute("userService", userService);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+        DaoFactory daoFactory = new HibernateDaoFactory();
+        UserDAO userDAO = daoFactory.getUserDAO(null);
+        UserService userService = new UserService(userDAO);
+        servletContextEvent.getServletContext().setAttribute("userService", userService);
 
         try {
             Properties properties = PropertyReader.getInstance(PATH_TO_PROPERTY_FILE);

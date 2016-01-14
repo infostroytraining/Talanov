@@ -28,7 +28,7 @@ public class MainServlet extends HttpServlet {
         try {
             UserDTO userDTO = (UserDTO) req.getServletContext().getAttribute("userDTO");
             User user = new User(userDTO);
-            if(userService.isEmailDuplicate(user)) {
+            if(!userService.isEmailDuplicate(user)) {
                 int ID = userService.create(user);
                 logger.info("User with id => {} added.", ID);
                 resp.getWriter().write("{\"status\":\"Ok\"}");

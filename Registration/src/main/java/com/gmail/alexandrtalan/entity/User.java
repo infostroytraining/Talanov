@@ -6,7 +6,7 @@ import com.gmail.alexandrtalan.dto.UserDTO;
 public class User {
 
     private Integer id;
-    private String firstName, lastName, email, password, imagePath;
+    private String firstName, lastName, imagePath, email, password;
 
     public User() {
     }
